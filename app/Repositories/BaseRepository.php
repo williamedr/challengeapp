@@ -13,14 +13,9 @@ class BaseRepository
 		$this->model = $model;
 	}
 
-	public function all($filters = [], $with = [])
+	public function all($filters = [])
 	{
-		if (empty($with)) {
-			$query = $this->model;
-
-		} else {
-			$query = $this->model->with($with);
-		}
+		$query = $this->model;
 
 		if (!empty($filters)) {
 			$query->where($filters);

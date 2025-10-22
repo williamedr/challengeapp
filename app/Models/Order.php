@@ -33,6 +33,7 @@ class Order extends Model
 {
 	use HasFactory;
 
+
 	protected $table = 'orders';
 
 	protected $casts = [
@@ -47,6 +48,12 @@ class Order extends Model
 		'status',
 		'total'
 	];
+
+    protected $with = [
+		'orderItems',
+		// 'invoices',
+	];
+
 
 	public function tenant()
 	{

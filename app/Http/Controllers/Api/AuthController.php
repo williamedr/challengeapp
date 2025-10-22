@@ -36,8 +36,14 @@ class AuthController extends BaseController
 
 		$user = User::where('email', $data['email'])->first();
 
-		if (!$user || !Hash::check($data['password'], $user->password)) {
-			self::sendError('No valid credentials.', [], 401);
+		$check = false;
+
+		if ($user) {
+			$check = Hash::check($data['password'], $user->password);
+		}
+
+		if (!$check) {
+			return self::sendError('No valid credentials.', [], 401);
 		}
 
 		$token = $user->createToken('auth_token')->plainTextToken;

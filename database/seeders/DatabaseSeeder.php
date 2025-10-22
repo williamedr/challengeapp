@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Invoice;
 use Illuminate\Database\Seeder;
 
 use App\Models\Order;
@@ -10,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +26,7 @@ class DatabaseSeeder extends Seeder
 		DB::table('users')->truncate();
 		DB::table('products')->truncate();
 		DB::table('orders')->truncate();
+		DB::table('invoices')->truncate();
 
 		Schema::enableForeignKeyConstraints();
 
@@ -31,8 +34,11 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'William',
             'email' => 'williamedr@gmail.com',
+			'email_verified_at' => now(),
             'password' => Hash::make('123456'),
+			'remember_token' => Str::random(10),
         ]);
+
 
 		User::factory()->count(3)->create();
 
@@ -41,6 +47,9 @@ class DatabaseSeeder extends Seeder
 
 
 		Order::factory()->count(12)->create();
+
+
+		Invoice::factory()->count(3)->create();
 
 	}
 }

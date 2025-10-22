@@ -7,11 +7,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Invoice
- * 
+ *
  * @property int $id
  * @property int|null $tenant_id
  * @property int $order_id
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $issued_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Order $order
  * @property Tenant|null $tenant
  *
@@ -28,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Invoice extends Model
 {
+	use HasFactory;
+
+
 	protected $table = 'invoices';
 
 	protected $casts = [
@@ -44,6 +48,9 @@ class Invoice extends Model
 		'total',
 		'issued_at'
 	];
+
+	protected $with = ['order'];
+
 
 	public function order()
 	{

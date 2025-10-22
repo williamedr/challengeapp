@@ -25,6 +25,7 @@ class OrderController extends BaseController
 	public function index()
 	{
 		$filters = [];
+
 		$result = $this->orderRepository->all($filters);
 
 		return $this->sendResponse($result);

@@ -33,6 +33,7 @@ class OrderItem extends Model
 {
 	use HasFactory;
 
+
 	protected $table = 'order_items';
 
 	protected $casts = [
@@ -52,6 +53,10 @@ class OrderItem extends Model
 		'unit_price',
 		'subtotal'
 	];
+
+
+	protected $with = ['product'];
+
 
 	public function order()
 	{
