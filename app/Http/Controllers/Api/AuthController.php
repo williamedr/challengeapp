@@ -17,14 +17,16 @@ class AuthController extends BaseController
 
 		$token = $user->createToken('auth_token')->plainTextToken;
 
+		$message = 'User successfully registered!';
+
 		$result = [
+			'success' => true,
 			'user' => $user,
+			'message' => $message,
 			'access_token' => $token,
 		];
 
-		$message = 'User successfully registered!';
-
-		return self::sendResponse($result, $message, 201);
+		return response()->json($result, 201);
 	}
 
 
@@ -40,14 +42,16 @@ class AuthController extends BaseController
 
 		$token = $user->createToken('auth_token')->plainTextToken;
 
+		$message = 'User successfully logged!';
+
 		$result = [
+			'success' => true,
 			'user' => $user,
+			'message' => $message,
 			'access_token' => $token,
 		];
 
-		$message = 'User successfully logged!';
-
-		return self::sendResponse($result, $message, 200);
+		return response()->json($result, 200);
 	}
 
 

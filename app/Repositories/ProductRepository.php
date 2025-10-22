@@ -2,48 +2,35 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use App\Interfaces\ProductRepositoryInterface;
 
-class ProductRepository implements ProductRepositoryInterface
+
+class ProductRepository extends BaseRepository
 {
-    protected $model;
 
-    public function __construct(Product $product)
-    {
-        $this->model = $product;
-    }
+	public function __construct(Product $model)
+	{
+		parent::__construct($model);
+	}
 
-    public function all(array $filters = [])
-    {
-        $q = $this->model->newQuery();
 
-        if (!empty($filters['search'])) {
-            $q->where('name', 'like', '%' . $filters['search'] . '%');
-        }
+	public function customQuery($params)
+	{
+		if (empty($params)) {
+			return [];
+		}
 
-        return $q->paginate($filters['per_page'] ?? 15);
-    }
+		if (!empty($params['id'])) {
+			$query = $this->model->where(['id' => $params['id']]);
+		}
 
-    public function find(int $id)
-    {
-        return $this->model->findOrFail($id);
-    }
+		if (!empty($params['name'])) {
+			$query = $this->model->where(['LIKE', 'name', $params['name']]);
+		}
 
-    public function create(array $data)
-    {
-        return $this->model->create($data);
-    }
+		$result = $query->get();
 
-    public function update(int $id, array $data)
-    {
-        $p = $this->find($id);
-        $p->update($data);
-        return $p;
-    }
+		return $result;
+	}
 
-    public function delete(int $id): bool
-    {
-        $p = $this->find($id);
-        return $p->delete();
-    }
+
 }
