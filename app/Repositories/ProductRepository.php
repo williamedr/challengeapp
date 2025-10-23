@@ -1,30 +1,26 @@
 <?php
 namespace App\Repositories;
 
+use App\Interfaces\ProductInterface;
 use App\Models\Product;
 
 
-class ProductRepository extends BaseRepository
+class ProductRepository implements ProductInterface
 {
+	public $product;
 
-	public function __construct(Product $model)
+	public function __construct(Product $product)
 	{
-		parent::__construct($model);
+		$this->product = $product;
 	}
 
 
-	public function customQuery($params)
+	public function all($filters = [])
 	{
-		if (empty($params)) {
-			return [];
-		}
+		$query = $this->product;
 
-		if (!empty($params['id'])) {
-			$query = $this->model->where(['id' => $params['id']]);
-		}
-
-		if (!empty($params['name'])) {
-			$query = $this->model->where(['LIKE', 'name', $params['name']]);
+		if (!empty($filters)) {
+			$query->where($filters);
 		}
 
 		$result = $query->get();
@@ -32,5 +28,30 @@ class ProductRepository extends BaseRepository
 		return $result;
 	}
 
+	public function get(int $id)
+	{
+		return $this->product->findOrFail($id);
+	}
+
+	public function create(Product $product)
+	{
+		$product->save();
+
+		return $product;
+	}
+
+	public function update(Product $product)
+	{
+		$product->save();
+
+		return $product;
+	}
+
+	public function delete(Product $product)
+	{
+		$product->delete();
+
+		return $product;
+	}
 
 }

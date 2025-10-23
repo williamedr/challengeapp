@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Requests\Order\UpdateOrderRequest;
-use App\Repositories\OrderRepository;
+use App\Interfaces\OrderInterface;
 use App\Models\Order;
 
 class OrderController extends BaseController
 {
-	private $orderRepository;
+	private $order;
 
 
-	public function __construct(OrderRepository $orderRepository)
+	public function __construct(OrderInterface $order)
 	{
-		$this->orderRepository = $orderRepository;
+		$this->order = $order;
 	}
 
 
@@ -26,7 +26,7 @@ class OrderController extends BaseController
 	{
 		$filters = [];
 
-		$result = $this->orderRepository->all($filters);
+		$result = $this->order->all($filters);
 
 		return $this->sendResponse($result);
 	}
@@ -39,7 +39,7 @@ class OrderController extends BaseController
 	{
 		$record = new Order($request->validated());
 
-		$result = $this->orderRepository->save($record);
+		$result = $this->order->create($record);
 
 		return $this->sendResponse($result);
 	}
@@ -62,7 +62,7 @@ class OrderController extends BaseController
 	{
 		$order->fill($request->validated());
 
-		$result = $this->orderRepository->save($order);
+		$result = $this->order->update($order);
 
 		return $this->sendResponse($result);
 	}
@@ -72,7 +72,7 @@ class OrderController extends BaseController
 	 */
 	public function destroy(Order $order)
 	{
-		$result = $this->orderRepository->delete($order);
+		$result = $this->order->delete($order);
 
 		return $this->sendResponse($result);
 	}

@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use App\Repositories\ProductRepository;
+use App\Interfaces\ProductInterface;
 use App\Models\Product;
 
 class ProductController extends BaseController
 {
-	private $productRepository;
+	private $product;
 
 
-	public function __construct(ProductRepository $productRepository)
+	public function __construct(ProductInterface $product)
 	{
-		$this->productRepository = $productRepository;
+		$this->product = $product;
 	}
 
 
@@ -25,7 +25,7 @@ class ProductController extends BaseController
 	public function index()
 	{
 		$filters = [];
-		$result = $this->productRepository->all($filters);
+		$result = $this->product->all($filters);
 
 		return $this->sendResponse($result);
 	}
@@ -38,7 +38,7 @@ class ProductController extends BaseController
 	{
 		$record = new Product($request->validated());
 
-		$result = $this->productRepository->save($record);
+		$result = $this->product->create($record);
 
 		return $this->sendResponse($result);
 	}
@@ -61,7 +61,7 @@ class ProductController extends BaseController
 	{
 		$product->fill($request->validated());
 
-		$result = $this->productRepository->save($product);
+		$result = $this->product->update($product);
 
 		return $this->sendResponse($result);
 	}
@@ -71,7 +71,7 @@ class ProductController extends BaseController
 	 */
 	public function destroy(Product $product)
 	{
-		$result = $this->productRepository->delete($product);
+		$result = $this->product->delete($product);
 
 		return $this->sendResponse($result);
 	}
@@ -92,19 +92,6 @@ class ProductController extends BaseController
 	public function edit()
 	{
 		return '';
-	}
-
-
-	/**
-	 * Get custom query
-	 */
-	public function getCustomQuery()
-	{
-		$params = [];
-
-		$result = $this->productRepository->customQuery($params);
-
-		return $this->sendResponse($result);
 	}
 
 

@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Requests\Invoice\UpdateInvoiceRequest;
-use App\Repositories\InvoiceRepository;
+use App\Interfaces\InvoiceInterface;
 use App\Models\Invoice;
 
 class InvoiceController extends BaseController
 {
-	private $invoiceRepository;
+	private $invoice;
 
 
-	public function __construct(InvoiceRepository $invoiceRepository)
+	public function __construct(InvoiceInterface $invoice)
 	{
-		$this->invoiceRepository = $invoiceRepository;
+		$this->invoice = $invoice;
 	}
 
 
@@ -26,7 +26,7 @@ class InvoiceController extends BaseController
 	{
 		$filters = [];
 
-		$result = $this->invoiceRepository->all($filters);
+		$result = $this->invoice->all($filters);
 
 		return $this->sendResponse($result);
 	}
@@ -39,7 +39,7 @@ class InvoiceController extends BaseController
 	{
 		$record = new Invoice($request->validated());
 
-		$result = $this->invoiceRepository->save($record);
+		$result = $this->invoice->create($record);
 
 		return $this->sendResponse($result);
 	}
@@ -62,7 +62,7 @@ class InvoiceController extends BaseController
 	{
 		$invoice->fill($request->validated());
 
-		$result = $this->invoiceRepository->save($invoice);
+		$result = $this->invoice->update($invoice);
 
 		return $this->sendResponse($result);
 	}
@@ -72,7 +72,7 @@ class InvoiceController extends BaseController
 	 */
 	public function destroy(Invoice $invoice)
 	{
-		$result = $this->invoiceRepository->delete($invoice);
+		$result = $this->invoice->delete($invoice);
 
 		return $this->sendResponse($result);
 	}

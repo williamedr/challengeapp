@@ -49,7 +49,5 @@ class DatabaseSeeder extends Seeder
 		Order::factory()->count(12)->create();
 
 
-		Invoice::factory()->count(3)->create();
-
 	}
 }
