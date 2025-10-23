@@ -22,7 +22,16 @@ class OrderRepository implements OrderInterface
 			$query = $this->order->where($filters);
 		}
 
-		$result = $query->get();
+		if (isset($filters['id'])) {
+			$result = $query->first();
+
+			if (empty($result)) {
+				$result = [];
+			}
+
+		} else {
+			$result = $query->get();
+		}
 
 		return $result;
 	}

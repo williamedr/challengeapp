@@ -24,7 +24,16 @@ class InvoiceRepository implements InvoiceInterface
 			$query = $this->invoice->where($filters);
 		}
 
-		$result = $query->get();
+		if (isset($filters['id'])) {
+			$result = $query->first();
+
+			if (empty($result)) {
+				$result = [];
+			}
+
+		} else {
+			$result = $query->get();
+		}
 
 		return $result;
 	}

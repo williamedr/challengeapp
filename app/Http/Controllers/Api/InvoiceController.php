@@ -50,9 +50,14 @@ class InvoiceController extends BaseController
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Invoice $invoice)
+	public function show($id, Request $request)
 	{
-		return $this->sendResponse($invoice);
+		$filters = $request->all();
+		$filters['id'] = $id;
+
+		$result = $this->invoice->all($filters);
+
+		return $this->sendResponse($result);
 	}
 
 

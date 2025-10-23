@@ -25,7 +25,16 @@ class ProductRepository implements ProductInterface
 			$query = $this->product->where($filters);
 		}
 
-		$result = $query->get();
+		if (isset($filters['id'])) {
+			$result = $query->first();
+
+			if (empty($result)) {
+				$result = [];
+			}
+
+		} else {
+			$result = $query->get();
+		}
 
 		return $result;
 	}

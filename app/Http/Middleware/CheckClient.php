@@ -22,16 +22,17 @@ class CheckClient
 
 		if (!empty($user->client_id)) {
 			$client_id = $user->client_id;
-			$request['client_id'] = $client_id;
 
 			$client = Client::findOrFail($client_id);
 
 			if (empty($client)) {
 				return response([
-					'client_id' => intval($request->client_id),
+					'client_id' => intval($client_id),
 					'message' => "Client not found.",
 				], 404);
 			}
+
+			$request['client_id'] = $client_id;
 		}
 
 		return $next($request);

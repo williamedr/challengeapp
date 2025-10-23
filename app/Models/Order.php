@@ -50,8 +50,8 @@ class Order extends Model
 	];
 
 	protected $with = [
-		'orderItems',
-		'invoices',
+		// 'orderItems',
+		// 'invoices',
 	];
 
 

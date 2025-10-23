@@ -44,9 +44,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() {
 
-	Route::resource('orders', OrderController::class);
+	Route::resource('orders', OrderController::class)->except('show');
+	Route::get('orders/{id}', [OrderController::class, 'show']);
 
-	Route::resource('invoices', InvoiceController::class);
+	Route::resource('invoices', InvoiceController::class)->except('show');
+	Route::get('invoices/{id}', [InvoiceController::class, 'show']);
 
 	Route::resource('clients', ClientController::class);
 

@@ -49,9 +49,14 @@ class OrderController extends BaseController
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Order $order)
+	public function show($id, Request $request)
 	{
-		return $this->sendResponse($order);
+		$filters = $request->all();
+		$filters['id'] = $id;
+
+		$result = $this->order->all($filters);
+
+		return $this->sendResponse($result);
 	}
 
 
