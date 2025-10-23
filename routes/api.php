@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Middleware\CheckClient;
+use App\Http\Middleware\CheckUser;
 
 Route::get('/test', function () {
 	return "Test";
@@ -44,11 +45,9 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() {
 
-	Route::resource('orders', OrderController::class)->except('show');
-	Route::get('orders/{id}', [OrderController::class, 'show']);
+	Route::resource('orders', OrderController::class)->middleware(CheckUser::class);
 
-	Route::resource('invoices', InvoiceController::class)->except('show');
-	Route::get('invoices/{id}', [InvoiceController::class, 'show']);
+	Route::resource('invoices', InvoiceController::class)->middleware(CheckUser::class);
 
 	Route::resource('clients', ClientController::class);
 

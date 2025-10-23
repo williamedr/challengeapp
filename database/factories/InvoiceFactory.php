@@ -15,6 +15,7 @@ class InvoiceFactory extends Factory
 		$order_id = $order->id;
 
 		return [
+			'client_id' => $order->client_id,
 			'order_id' => $order_id,
 			'invoice_number' => str_pad($order_id, 8, '0', STR_PAD_LEFT),
 			'total' => $order->total,

@@ -3,6 +3,8 @@ namespace App\Http\Requests\Order;
 
 use App\Enums\OrderStatus;
 use App\Http\Requests\BaseRequest;
+use App\Rules\ClientUserRule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 
@@ -14,11 +16,14 @@ class StoreOrderRequest extends BaseRequest {
 
 
 	public function rules() {
+		$user = Auth::user();
+
 		return [
-			'client_id' => ['required', Rule::exists('clients', 'id')],
-			'user_id' => ['required', Rule::exists('users', 'id')],
+			'client_id' => ['required', new ClientUserRule($user)],
+			'user_id' => ['required', Rule::in([$user->id])],
 			'status' => ['required', new Enum(OrderStatus::class)],
 			'total' => 'required|numeric|min:0',
 		];
 	}
+
 }

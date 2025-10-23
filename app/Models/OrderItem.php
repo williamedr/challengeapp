@@ -65,8 +65,4 @@ class OrderItem extends Model
 		return $this->belongsTo(Product::class);
 	}
 
-	public function tenant()
-	{
-		return $this->belongsTo(Tenant::class);
-	}
 }

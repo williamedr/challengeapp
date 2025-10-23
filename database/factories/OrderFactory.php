@@ -3,9 +3,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\OrderStatus;
+use App\Models\ClientUser;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\User;
+
 
 class OrderFactory extends Factory
 {
@@ -13,11 +14,11 @@ class OrderFactory extends Factory
 
 	public function definition()
 	{
-		$user = User::inRandomOrder()->whereNotNull('client_id')->first();
+		$clientUser = ClientUser::inRandomOrder()->first();
 
 		return [
-			'client_id' => $user->client_id,
-			'user_id' => $user->id,
+			'client_id' => $clientUser->client_id,
+			'user_id' => $clientUser->user_id,
 			'status' => $this->faker->randomElement(array_column(OrderStatus::cases(), 'value')),
 			'total' => $this->faker->randomFloat(2, 1, 1000),
 		];
