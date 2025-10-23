@@ -25,7 +25,7 @@ class OrderFactory extends Factory
 	public function configure()
 	{
 		return $this->afterCreating(function (Order $order) {
-			$range = $this->faker->numberBetween(1, 6);
+			$range = $this->faker->numberBetween(1, 4);
 
 			OrderItem::factory()->count($range)->for($order)->create();
 

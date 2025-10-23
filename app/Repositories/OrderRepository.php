@@ -2,10 +2,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\OrderInterface;
-use App\Models\Invoice;
 use App\Models\Order;
-use App\Notifications\OrderCreated;
-use Illuminate\Support\Facades\Auth;
 
 class OrderRepository implements OrderInterface
 {
@@ -58,6 +55,12 @@ class OrderRepository implements OrderInterface
 		$order->delete();
 
 		return $order;
+	}
+
+
+	public function createInvoice(Order $order)
+	{
+
 	}
 
 }

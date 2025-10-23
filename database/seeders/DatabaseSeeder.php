@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Invoice;
 use Illuminate\Database\Seeder;
 
-use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -25,29 +23,25 @@ class DatabaseSeeder extends Seeder
 
 		DB::table('users')->truncate();
 		DB::table('products')->truncate();
-		DB::table('orders')->truncate();
-		DB::table('invoices')->truncate();
 
 		Schema::enableForeignKeyConstraints();
 
 
-        User::create([
-            'name' => 'William',
-            'email' => 'williamedr@gmail.com',
+		User::create([
+			'name' => 'William',
+			'email' => 'williamedr@gmail.com',
 			'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+			'password' => Hash::make('123456'),
 			'remember_token' => Str::random(10),
-        ]);
+		]);
 
 
-		User::factory()->count(3)->create();
+		// User::factory()->count(3)->create();
+
+		Product::factory()->count(10)->create();
 
 
-		Product::factory()->count(20)->create();
-
-
-		Order::factory()->count(12)->create();
-
+		$this->call([OrderSeeder::class]);
 
 	}
 }

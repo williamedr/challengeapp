@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\Invoice;
+use App\Jobs\GenerateInvoiceJob;
+
 use App\Models\Order;
-use App\Notifications\InvoiceCreated;
 
 
 class OrderObserver
@@ -14,18 +14,7 @@ class OrderObserver
 	 */
 	public function created(Order $order): void
 	{
-		$order_id = $order->id;
-
-		Invoice::create([
-			'order_id' => $order_id,
-			'invoice_number' => str_pad($order_id, 8, '0', STR_PAD_LEFT),
-			'total' => $order->total,
-			'issued_at' => now(),
-		]);
-
-		$order->refresh();
-
-		$order->user->notify(new InvoiceCreated($order));
+		GenerateInvoiceJob::dispatch($order);
 	}
 
 	/**

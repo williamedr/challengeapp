@@ -7,6 +7,7 @@ use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Requests\Invoice\UpdateInvoiceRequest;
 use App\Interfaces\InvoiceInterface;
 use App\Models\Invoice;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends BaseController
 {
@@ -93,6 +94,18 @@ class InvoiceController extends BaseController
 	public function edit()
 	{
 		return '';
+	}
+
+
+
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function notifications()
+	{
+		$result = Auth::user()->notifications;
+
+		return $this->sendResponse($result);
 	}
 
 

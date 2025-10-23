@@ -37,6 +37,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 	Route::resource('invoices', InvoiceController::class);
 
+	Route::get('notifications', [InvoiceController::class, 'notifications']);
+
 });
-
-

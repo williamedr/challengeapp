@@ -7,11 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoiceCreated extends Notification implements ShouldQueue
+class InvoiceCreated extends Notification
 {
 	use Queueable;
 
-	public $invoice;
+	protected $invoice;
 
 	/**
 	 * Create a new notification instance.
@@ -52,6 +52,20 @@ class InvoiceCreated extends Notification implements ShouldQueue
 	 */
 	public function toArray(object $notifiable): array
 	{
-		return (array) $this->invoice->attributes;
+		return [];
 	}
+
+	/**
+	 * Get the array representation of the notification.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toDatabase(object $notifiable): array
+	{
+		// $this->invoice->order;
+		$response = $this->invoice->toArray();
+
+		return $response;
+	}
+
 }

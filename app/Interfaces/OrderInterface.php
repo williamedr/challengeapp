@@ -17,4 +17,6 @@ interface OrderInterface
 
 	public function delete(Order $order);
 
+	public function createInvoice(Order $order);
+
 }
