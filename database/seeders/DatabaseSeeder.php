@@ -22,10 +22,17 @@ class DatabaseSeeder extends Seeder
 
 		Schema::disableForeignKeyConstraints();
 
+		DB::table('cache_locks')->truncate();
+		DB::table('jobs')->truncate();
 		DB::table('client_user')->truncate();
 		DB::table('clients')->truncate();
 		DB::table('users')->truncate();
 		DB::table('products')->truncate();
+
+		DB::table('notifications')->truncate();
+		DB::table('orders')->truncate();
+		DB::table('order_items')->truncate();
+		DB::table('invoices')->truncate();
 
 		Schema::enableForeignKeyConstraints();
 
@@ -48,7 +55,7 @@ class DatabaseSeeder extends Seeder
 		Product::factory()->count(10)->create();
 
 
-		$this->call([OrderSeeder::class]);
+		// $this->call([OrderSeeder::class]);
 
 	}
 }

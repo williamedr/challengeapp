@@ -52,7 +52,9 @@ class OrderItem extends Model
 	];
 
 
-	protected $with = ['product'];
+	protected $with = [
+		// 'product'
+	];
 
 
 	public function order()

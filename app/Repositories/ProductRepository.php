@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductRepository implements ProductInterface
 {

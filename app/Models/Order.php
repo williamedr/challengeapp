@@ -50,7 +50,7 @@ class Order extends Model
 	];
 
 	protected $with = [
-		// 'orderItems',
+		'order_items',
 		// 'invoices',
 	];
 
@@ -70,7 +70,7 @@ class Order extends Model
 		return $this->hasMany(Invoice::class);
 	}
 
-	public function orderItems()
+	public function order_items()
 	{
 		return $this->hasMany(OrderItem::class);
 	}

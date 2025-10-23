@@ -34,19 +34,6 @@ class OrderController extends BaseController
 
 
 	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(StoreOrderRequest $request)
-	{
-		$record = new Order($request->validated());
-
-		$result = $this->order->create($record);
-
-		return $this->sendResponse($result);
-	}
-
-
-	/**
 	 * Display the specified resource.
 	 */
 	public function show($id, Request $request)
@@ -60,15 +47,31 @@ class OrderController extends BaseController
 	}
 
 
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(StoreOrderRequest $request)
+	{
+		$validatedData = $request->validated();
+
+		$order = new Order($validatedData);
+
+		$result = $this->order->create($order, $validatedData['order_items']);
+
+		return $this->sendResponse($result);
+	}
+
 
 	/**
 	 * Update the specified resource in storage.
 	 */
 	public function update(UpdateOrderRequest $request, Order $order)
 	{
-		$order->fill($request->validated());
+		$validatedData = $request->validated();
 
-		$result = $this->order->update($order);
+		$order->fill($validatedData);
+
+		$result = $this->order->update($order, $validatedData['order_items']);
 
 		return $this->sendResponse($result);
 	}

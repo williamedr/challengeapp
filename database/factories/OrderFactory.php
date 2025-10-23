@@ -33,7 +33,7 @@ class OrderFactory extends Factory
 			OrderItem::factory()->count($range)->for($order)->create();
 
 			$order->update([
-				'total' => $order->orderItems->sum('subtotal')
+				'total' => $order->order_items->sum('subtotal')
 			]);
 		});
 	}
