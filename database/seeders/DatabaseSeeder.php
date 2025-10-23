@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder
 
 
 		User::create([
-			'name' => 'William',
-			'email' => 'williamedr@gmail.com',
+			'name' => 'Admin',
+			'email' => 'admin@example.com',
 			'email_verified_at' => now(),
-			'password' => Hash::make('123456'),
+			'password' => Hash::make('secret'),
 			'remember_token' => Str::random(10),
 		]);
 

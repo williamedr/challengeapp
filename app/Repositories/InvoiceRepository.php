@@ -3,8 +3,6 @@ namespace App\Repositories;
 
 use App\Interfaces\InvoiceInterface;
 use App\Models\Invoice;
-use App\Notifications\OrderCreated;
-use Illuminate\Support\Facades\Auth;
 
 class InvoiceRepository implements InvoiceInterface
 {
