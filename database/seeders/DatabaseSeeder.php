@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 use App\Models\Product;
@@ -21,10 +22,14 @@ class DatabaseSeeder extends Seeder
 
 		Schema::disableForeignKeyConstraints();
 
+		DB::table('clients')->truncate();
 		DB::table('users')->truncate();
 		DB::table('products')->truncate();
 
 		Schema::enableForeignKeyConstraints();
+
+
+		Client::factory()->count(3)->create();
 
 
 		User::create([
@@ -36,7 +41,8 @@ class DatabaseSeeder extends Seeder
 		]);
 
 
-		// User::factory()->count(3)->create();
+		User::factory()->count(3)->create();
+
 
 		Product::factory()->count(10)->create();
 

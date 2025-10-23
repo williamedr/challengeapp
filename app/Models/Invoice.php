@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class Invoice
  *
  * @property int $id
- * @property int|null $tenant_id
  * @property int $order_id
  * @property string $invoice_number
  * @property float $total
@@ -35,14 +34,12 @@ class Invoice extends Model
 	protected $table = 'invoices';
 
 	protected $casts = [
-		'tenant_id' => 'int',
 		'order_id' => 'int',
 		'total' => 'float',
 		'issued_at' => 'datetime'
 	];
 
 	protected $fillable = [
-		'tenant_id',
 		'order_id',
 		'invoice_number',
 		'total',

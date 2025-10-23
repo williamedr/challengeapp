@@ -18,7 +18,6 @@ class OrderItemFactory extends Factory
 		$subtotal = $quantity * $unit_price;
 
 		return [
-			// 'tenant_id',
 			'order_id' => Order::inRandomOrder()->first()->id,
 			'product_id' => Product::inRandomOrder()->first()->id,
 			'quantity' => $quantity,

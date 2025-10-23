@@ -8,7 +8,6 @@ return new class extends Migration {
     public function up() {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->unsignedBigInteger('order_id')->index();
             $table->unsignedBigInteger('product_id')->index();
             $table->integer('quantity');
@@ -16,7 +15,6 @@ return new class extends Migration {
             $table->decimal('subtotal', 12, 2);
             $table->timestamps();
 
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

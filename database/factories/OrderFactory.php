@@ -13,9 +13,11 @@ class OrderFactory extends Factory
 
 	public function definition()
 	{
+		$user = User::inRandomOrder()->whereNotNull('client_id')->first();
+
 		return [
-			// 'tenant_id',
-			'user_id' => User::inRandomOrder()->first()->id,
+			'client_id' => $user->client_id,
+			'user_id' => $user->id,
 			'status' => $this->faker->randomElement(array_column(OrderStatus::cases(), 'value')),
 			'total' => $this->faker->randomFloat(2, 1, 1000),
 		];

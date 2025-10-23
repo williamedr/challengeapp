@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProductController;
@@ -36,6 +37,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 	Route::resource('orders', OrderController::class);
 
 	Route::resource('invoices', InvoiceController::class);
+
+	Route::resource('clients', ClientController::class);
+
+	Route::get('clients/{client}/orders', [ClientController::class, 'orders']);
 
 	Route::get('notifications', [InvoiceController::class, 'notifications']);
 

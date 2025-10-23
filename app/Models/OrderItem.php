@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class OrderItem
  *
  * @property int $id
- * @property int|null $tenant_id
  * @property int $order_id
  * @property int $product_id
  * @property int $quantity
@@ -37,7 +36,6 @@ class OrderItem extends Model
 	protected $table = 'order_items';
 
 	protected $casts = [
-		'tenant_id' => 'int',
 		'order_id' => 'int',
 		'product_id' => 'int',
 		'quantity' => 'int',
@@ -46,7 +44,6 @@ class OrderItem extends Model
 	];
 
 	protected $fillable = [
-		'tenant_id',
 		'order_id',
 		'product_id',
 		'quantity',

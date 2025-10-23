@@ -14,7 +14,6 @@ class StoreOrderItemRequest extends BaseRequest {
 
 	public function rules() {
 		return [
-			// 'tenant_id' => 'required|numeric|min:0',
 			'order_id' => ['required', Rule::exists('orders', 'id')],
 			'product_id' => ['required', Rule::exists('products', 'id')],
 			'quantity' => 'required|int|min:1',

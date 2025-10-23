@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Order
  *
  * @property int $id
- * @property int|null $tenant_id
+ * @property int|null $client_id
  * @property int $user_id
  * @property string $status
  * @property float $total
@@ -37,13 +37,13 @@ class Order extends Model
 	protected $table = 'orders';
 
 	protected $casts = [
-		'tenant_id' => 'int',
+		'client_id' => 'int',
 		'user_id' => 'int',
 		'total' => 'float'
 	];
 
 	protected $fillable = [
-		'tenant_id',
+		'client_id',
 		'user_id',
 		'status',
 		'total'
