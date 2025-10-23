@@ -7,6 +7,9 @@ use App\Http\Requests\Client\StoreClientRequest;
 use App\Http\Requests\Client\UpdateClientRequest;
 use App\Interfaces\ClientInterface;
 use App\Models\Client;
+use Exception;
+use PhpParser\Node\Stmt\TryCatch;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ClientController extends BaseController
 {
