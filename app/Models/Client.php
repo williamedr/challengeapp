@@ -43,6 +43,11 @@ class Client extends Model
 		return $this->hasMany(Order::class);
 	}
 
+	public function invoicecs()
+	{
+		return $this->hasMany(Invoice::class);
+	}
+
 	public function users()
 	{
 		return $this->hasMany(User::class);

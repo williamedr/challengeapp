@@ -19,8 +19,10 @@ class ClientRepository implements ClientInterface
 	{
 		$query = $this->client;
 
-		if (!empty($filters)) {
-			$query->where($filters);
+		if (empty($filters)) {
+			$query = $this->client;
+		} else {
+			$query = $this->client->where($filters);
 		}
 
 		$result = $query->get();

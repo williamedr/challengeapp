@@ -7,6 +7,7 @@ use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Requests\Invoice\UpdateInvoiceRequest;
 use App\Interfaces\InvoiceInterface;
 use App\Models\Invoice;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends BaseController
@@ -23,9 +24,9 @@ class InvoiceController extends BaseController
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$filters = [];
+		$filters = $request->all();
 
 		$result = $this->invoice->all($filters);
 

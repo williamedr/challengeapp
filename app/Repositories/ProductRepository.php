@@ -19,8 +19,10 @@ class ProductRepository implements ProductInterface
 	{
 		$query = $this->product;
 
-		if (!empty($filters)) {
-			$query->where($filters);
+		if (empty($filters)) {
+			$query = $this->product;
+		} else {
+			$query = $this->product->where($filters);
 		}
 
 		$result = $query->get();

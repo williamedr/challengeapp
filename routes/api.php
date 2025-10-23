@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
-
+use App\Http\Middleware\CheckClient;
 
 Route::get('/test', function () {
 	return "Test";
@@ -34,6 +34,16 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 	Route::resource('products', ProductController::class);
 
+	Route::get('clients/{client}/orders', [ClientController::class, 'orders']);
+
+	Route::get('notifications', [InvoiceController::class, 'notifications']);
+
+});
+
+
+
+Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() {
+
 	Route::resource('orders', OrderController::class);
 
 	Route::resource('invoices', InvoiceController::class);
@@ -42,6 +52,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 	Route::get('clients/{client}/orders', [ClientController::class, 'orders']);
 
-	Route::get('notifications', [InvoiceController::class, 'notifications']);
-
 });
+
+

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Invoice
  *
  * @property int $id
+ * @property int|null $client_id
  * @property int $order_id
  * @property string $invoice_number
  * @property float $total
@@ -34,20 +35,27 @@ class Invoice extends Model
 	protected $table = 'invoices';
 
 	protected $casts = [
+		'client_id' => 'int',
 		'order_id' => 'int',
 		'total' => 'float',
 		'issued_at' => 'datetime'
 	];
 
 	protected $fillable = [
+		'client_id',
 		'order_id',
 		'invoice_number',
 		'total',
 		'issued_at'
 	];
 
-	protected $with = ['order'];
+	// protected $with = ['order'];
 
+
+	public function client()
+	{
+		return $this->belongsTo(Client::class);
+	}
 
 	public function order()
 	{

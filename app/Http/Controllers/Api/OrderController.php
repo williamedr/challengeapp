@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Requests\Order\UpdateOrderRequest;
 use App\Interfaces\OrderInterface;
+use Illuminate\Http\Request;
 use App\Models\Order;
 
 class OrderController extends BaseController
@@ -22,9 +23,9 @@ class OrderController extends BaseController
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$filters = [];
+		$filters = $request->all();
 
 		$result = $this->order->all($filters);
 

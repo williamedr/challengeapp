@@ -20,8 +20,10 @@ class InvoiceRepository implements InvoiceInterface
 	{
 		$query = $this->invoice;
 
-		if (!empty($filters)) {
-			$query->where($filters);
+		if (empty($filters)) {
+			$query = $this->invoice;
+		} else {
+			$query = $this->invoice->where($filters);
 		}
 
 		$result = $query->get();

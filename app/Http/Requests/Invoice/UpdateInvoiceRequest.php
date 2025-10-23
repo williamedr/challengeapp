@@ -14,6 +14,7 @@ class UpdateInvoiceRequest extends BaseRequest {
 
 	public function rules() {
 		return [
+			'client_id' => ['required', Rule::exists('clients', 'id')],
 			'order_id' => ['required', Rule::exists('orders', 'id')],
 			'invoice_number' => 'nullable|string|max:255',
 			'total' => 'required|numeric|min:0',

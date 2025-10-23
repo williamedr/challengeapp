@@ -16,10 +16,10 @@ class OrderRepository implements OrderInterface
 
 	public function all($filters = [])
 	{
-		$query = $this->order;
-
-		if (!empty($filters)) {
-			$query->where($filters);
+		if (empty($filters)) {
+			$query = $this->order;
+		} else {
+			$query = $this->order->where($filters);
 		}
 
 		$result = $query->get();
