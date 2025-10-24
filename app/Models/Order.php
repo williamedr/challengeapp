@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
- * @property Tenant|null $tenant
+ * @property Client|null $client
  * @property User $user
  * @property Collection|Invoice[] $invoices
  * @property Collection|OrderItem[] $order_items

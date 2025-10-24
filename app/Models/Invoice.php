@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  *
  * @property Order $order
- * @property Tenant|null $tenant
+ * @property Client|null $client
  *
  * @package App\Models
  */
@@ -62,8 +62,4 @@ class Invoice extends Model
 		return $this->belongsTo(Order::class);
 	}
 
-	public function tenant()
-	{
-		return $this->belongsTo(Tenant::class);
-	}
 }

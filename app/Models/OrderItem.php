@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Order $order
  * @property Product $product
- * @property Tenant|null $tenant
+ * @property Client|null $client
  *
  * @package App\Models
  */
