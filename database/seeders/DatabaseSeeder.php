@@ -36,21 +36,27 @@ class DatabaseSeeder extends Seeder
 
 		Schema::enableForeignKeyConstraints();
 
-
+		// Create 3 Clients
 		Client::factory()->count(3)->create();
 
-
-		User::factory()->count(3)->create([
+		// Create 2 Admin users
+		User::factory()->count(2)->create([
 			'name' => 'admin'
 		]);
 
-		User::factory()->count(3)->create();
+		// Create 2 Client users
+		User::factory()->count(2)->create();
 
-
+		// Create 10 Products
 		Product::factory()->count(10)->create();
 
-
+		// Create Orders
 		$this->call([OrderSeeder::class]);
+
+		// Create Client Manager User (No Orders)
+		User::factory()->count(1)->create([
+			'name' => 'manager'
+		]);
 
 	}
 }

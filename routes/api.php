@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Middleware\CheckClient;
 use App\Http\Middleware\CheckUser;
+use App\Models\User;
 
 
 Route::get('/health', function () {
@@ -32,7 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 	Route::get('/test', function (Request $request) {
-		return "Test Authenticated";
+		return "Test Ok";
 	});
 
 

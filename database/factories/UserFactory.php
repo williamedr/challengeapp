@@ -44,8 +44,14 @@ class UserFactory extends Factory
 			$upd = [];
 
 			if ($name == 'admin') {
-				$email = 'admin' . $user->id;
+				$email = $name . $user->id;
 				$upd['name'] = ucfirst($name) . " " . $user->id;
+
+			} else if ($name == 'manager') {
+				$email = $name . $user->id;
+				$upd['name'] = ucfirst($name) . " " . $user->id;
+
+				$user->clients()->attach(Client::inRandomOrder()->first()->id);
 
 			} else {
 				$user->clients()->attach(Client::inRandomOrder()->first()->id);

@@ -4,7 +4,7 @@ namespace App\Repositories;
 use App\Interfaces\OrderInterface;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class OrderRepository implements OrderInterface
 {
@@ -28,7 +28,7 @@ class OrderRepository implements OrderInterface
 			$result = $query->first();
 
 			if (empty($result)) {
-				throw new AccessDeniedHttpException('Access Denied for this Order.');
+				throw new NotFoundHttpException('Order not found.');
 			}
 
 		} else {

@@ -10,6 +10,8 @@
 		protected User $user;
 		protected User $adminUser;
 		protected User $differentUser;
+		protected User $userNoOrders;
+
 
 		protected function setUp(): void
 		{
@@ -19,13 +21,27 @@
 			$this->seed(); // Runs DatabaseSeeder
 
 
-			// User associated to clients
-			$this->user = User::whereHas('clients')->inRandomOrder()->first();
+			$this->user = User::whereHas('clients')
+				->whereHas('orders')
+				->inRandomOrder()
+				->first();
 
-			$this->differentUser = User::whereHas('clients')->where('id', '<>', $this->user->id)->first();
+			$this->differentUser = User::whereHas('clients')
+				->whereHas('orders')
+				->where('id', '<>', $this->user->id)
+				->first();
+
+
+			$this->userNoOrders = User::whereDoesntHave('orders')
+				->whereHas('clients')
+				->inRandomOrder()
+				->first();
+
 
 			// User without client relation
-			$this->adminUser = User::whereDoesntHave('clients')->inRandomOrder()->first();
+			$this->adminUser = User::whereDoesntHave('clients')
+				->inRandomOrder()
+				->first();
 		}
 
 
