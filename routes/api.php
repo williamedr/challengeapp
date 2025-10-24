@@ -59,7 +59,6 @@ Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() 
 
 	Route::resource('clients', ClientController::class);
 
-	Route::get('clients/{client}/orders', [ClientController::class, 'orders']);
 
 });
 

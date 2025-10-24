@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Client;
 use App\Models\Order;
 use App\Models\User;
 use AuthenticatedApiTest;
@@ -121,6 +122,37 @@ class OrdersTest extends AuthenticatedApiTest
         echo "Different User Id: " . $this->differentUser->id . PHP_EOL;
 
 		$response = $this->getJson("/api/orders/$order_id");
+		$response->assertStatus(404);
+
+	}
+
+
+
+	public function test_authenticated_orders_by_client(): void
+	{
+
+		$this->actingAs($this->user);
+
+		$client = Client::inRandomOrder()->first();
+
+		$client_id = $client->id;
+
+		$response = $this->getJson("/api/clients/$client_id/orders");
+		$response->assertStatus(200);
+
+		$this->checkOrderStructure($response, 0);
+
+	}
+
+
+	public function test_authenticated_orders_by_bad_client(): void
+	{
+
+		$this->actingAs($this->user);
+
+		$client_id = 666777888;
+
+		$response = $this->getJson("/api/clients/$client_id/orders");
 		$response->assertStatus(404);
 
 	}
