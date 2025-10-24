@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -19,10 +20,20 @@ return Application::configure(basePath: dirname(__DIR__))
 		$exceptions->renderable(function (NotFoundHttpException $e, $request) {
 			if ($request->is('api/*')) {
 				$response['success'] = false;
-				$response['message'] = 'Record not found.';
-				$response['endpoint'] = $request->path();
+				$response['message'] = empty($e->getMessage()) ? 'Record not found.' : $e->getMessage();
 
 				return response()->json($response, 404);
+			}
+
+			throw $e;
+		});
+
+		$exceptions->renderable(function (AccessDeniedException $e, $request) {
+			if ($request->is('api/*')) {
+				$response['success'] = false;
+				$response['message'] = empty($e->getMessage()) ? 'Access Denied for this Resource.' : $e->getMessage();
+
+				return response()->json($response, 403);
 			}
 
 			throw $e;

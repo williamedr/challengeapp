@@ -49,6 +49,9 @@ class User extends Authenticatable
 	}
 
 
+	protected $with = ['clients'];
+
+
 	public function clients()
 	{
 		return $this->belongsToMany(Client::class)->withTimestamps();

@@ -20,7 +20,9 @@ class CheckUser
 
 		$user = $request->user();
 
-		$request['user_id'] = $user->id;
+		if ($user->clients()->exists()) {
+			$request['user_id'] = $user->id;
+		}
 
 		return $next($request);
 

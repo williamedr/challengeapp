@@ -2,10 +2,9 @@
 namespace App\Repositories;
 
 use App\Interfaces\OrderInterface;
-use App\Interfaces\OrderItemInterface;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\Product;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class OrderRepository implements OrderInterface
 {
@@ -29,7 +28,7 @@ class OrderRepository implements OrderInterface
 			$result = $query->first();
 
 			if (empty($result)) {
-				$result = [];
+				throw new AccessDeniedHttpException('Access Denied for this Order.');
 			}
 
 		} else {

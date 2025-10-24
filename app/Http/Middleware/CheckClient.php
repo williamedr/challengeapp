@@ -20,14 +20,26 @@ class CheckClient
 
 		$user = $request->user();
 
-		if (!empty($user->client_id)) {
-			$client_id = $user->client_id;
+		if ($user->clients()->exists()) {
+
+			if ($user->clients()->count() == 1) {
+				$client_id = $user->clients[0]->id;
+
+			} else {
+				return response([
+					'success' => false,
+					'code' => 422,
+					'message' => "Client Id (client_id) parameter is required.",
+				], 422);
+
+			}
 
 			$client = Client::findOrFail($client_id);
 
 			if (empty($client)) {
 				return response([
-					'client_id' => intval($client_id),
+					'success' => false,
+					'code' => 404,
 					'message' => "Client not found.",
 				], 404);
 			}

@@ -11,8 +11,9 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Middleware\CheckClient;
 use App\Http\Middleware\CheckUser;
 
-Route::get('/test', function () {
-	return "Test";
+
+Route::get('/health', function () {
+	return "Ok";
 });
 
 
@@ -28,6 +29,12 @@ Route::group(['prefix' => 'auth'], function() {
 
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
+
+
+	Route::get('/test', function (Request $request) {
+		return "Test Authenticated";
+	});
+
 
 	Route::get('/user', function (Request $request) {
 		return $request->user();
