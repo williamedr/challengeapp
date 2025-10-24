@@ -17,9 +17,16 @@ class OrderItemFactory extends Factory
 		$unit_price = $this->faker->randomFloat(2, 1, 1000);
 		$subtotal = $quantity * $unit_price;
 
+
+		$order = Order::inRandomOrder()->first();
+
+		$product_ids = $order->order_items->pluck('product_id')->toArray();
+
+		$product = Product::whereNotIn('id', $product_ids)->inRandomOrder()->first();
+
 		return [
-			'order_id' => Order::inRandomOrder()->first()->id,
-			'product_id' => Product::inRandomOrder()->first()->id,
+			'order_id' => $order->id,
+			'product_id' => $product->id,
 			'quantity' => $quantity,
 			'unit_price' => $unit_price,
 			'subtotal' => $subtotal,

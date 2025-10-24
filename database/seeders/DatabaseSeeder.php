@@ -40,14 +40,9 @@ class DatabaseSeeder extends Seeder
 		Client::factory()->count(3)->create();
 
 
-		User::create([
-			'name' => 'Admin',
-			'email' => 'admin@example.com',
-			'email_verified_at' => now(),
-			'password' => Hash::make('secret'),
-			'remember_token' => Str::random(10),
+		User::factory()->count(3)->create([
+			'name' => 'admin'
 		]);
-
 
 		User::factory()->count(3)->create();
 
@@ -55,7 +50,7 @@ class DatabaseSeeder extends Seeder
 		Product::factory()->count(10)->create();
 
 
-		// $this->call([OrderSeeder::class]);
+		$this->call([OrderSeeder::class]);
 
 	}
 }

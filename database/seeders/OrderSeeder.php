@@ -26,7 +26,7 @@ class OrderSeeder extends Seeder
 
 		Schema::enableForeignKeyConstraints();
 
-		Order::factory()->count(30)->create();
+		Order::factory()->count(20)->create();
 
 	}
 }

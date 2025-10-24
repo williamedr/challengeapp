@@ -38,11 +38,22 @@ class UserFactory extends Factory
 	public function configure()
 	{
 		return $this->afterCreating(function (User $user) {
-			$user->update([
-				'email' => 'testuser' . $user->id . '@example.com'
-			]);
+			$name = $user->name;
+			$email = 'testuser' . $user->id;
 
-			$user->clients()->attach(Client::inRandomOrder()->first()->id);
+			$upd = [];
+
+			if ($name == 'admin') {
+				$email = 'admin' . $user->id;
+				$upd['name'] = ucfirst($name) . " " . $user->id;
+
+			} else {
+				$user->clients()->attach(Client::inRandomOrder()->first()->id);
+			}
+
+			$upd['email'] = $email . '@example.com';
+
+			$user->update($upd);
 		});
 	}
 
