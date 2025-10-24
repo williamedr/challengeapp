@@ -16,7 +16,7 @@ This was implemented based on a single-database tenant without use any tenant pa
 
 ## Challenge Requirements
 
-(https://github.com/williamedr/challengeapp/blob/main/docs/LaravelChallenge.pdf)
+(docs/LaravelChallenge.pdf)
 
 ## Users Types
 
@@ -103,7 +103,7 @@ Files:
 ## Postman
 Collection Link:
 
-[Postman Collection] (https://github.com/williamedr/challengeapp/blob/main/docs/Challenge.postman_collection.json)
+[Postman Collection] (docs/Challenge.postman_collection.json)
 
 
 ## Future Improvements
