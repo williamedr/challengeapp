@@ -949,32 +949,32 @@
 	],
 	"variable": [
 		{
+			"key": "url",
+			"value": "http://localhost:8080"
+		},
+		{
 			"key": "access_token",
-			"value": "3|A81LrVh7a29CKDu0u5iX9hOLn1yq9BLu3QR3J3xV8d5e20ca"
+			"value": ""
 		},
 		{
 			"key": "admin_user",
-			"value": ""
-		},
-		{
-			"key": "admin_password",
-			"value": ""
-		},
-		{
-			"key": "user_password",
-			"value": ""
-		},
-		{
-			"key": "url",
-			"value": ""
-		},
-		{
-			"key": "client_user",
-			"value": ""
+			"value": "admin1@example.com"
 		},
 		{
 			"key": "manager_user",
-			"value": ""
+			"value": "manager5@example.com"
+		},
+		{
+			"key": "client_user",
+			"value": "testuser4@example.com"
+		},
+		{
+			"key": "admin_password",
+			"value": "secret"
+		},
+		{
+			"key": "user_password",
+			"value": "secret"
 		}
 	]
 }
