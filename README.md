@@ -16,7 +16,7 @@ This was implemented based on a single-database tenant without use any tenant pa
 
 ## Challenge Requirements
 
-(https://github.com/williamedr/challengeapp/blob/demo1/docs/LaravelChallenge.pdf)
+(https://github.com/williamedr/challengeapp/blob/main/docs/LaravelChallenge.pdf)
 
 ## Users Types
 
@@ -100,10 +100,72 @@ Files:
 
 
 
-## Postman
-Collection Link:
+## Base URL
 
-[Postman Collection] (https://github.com/williamedr/challengeapp/blob/demo1/docs/Challenge.postman_collection.json)
+- (http://localhost:8080/api)
+
+## Endpoints
+
+  - Check Health
+    - GET (http://localhost:8080/api/health)
+
+  ### Auth
+  - Login
+    - POST (/api/auth/login)
+
+  - Register
+    - POST (/api/auth/register)
+
+  - Logout
+    - POST (/api/auth/logout)
+
+
+  - User
+    - GET (/api/user)
+
+  ### Other Endpoints
+  - Orders
+    - GET (/orders)
+
+    - GET/PUT/DELETE (/orders/{$id})
+
+    - POST (/orders)
+
+  - Products
+    - GET (/products)
+
+    - GET/PUT/DELETE (/products/{$id})
+
+    - POST (/products)
+
+  - Invoices
+    - GET (/invoices)
+
+    - GET/PUT/DELETE (/invoices/{$id})
+
+    - POST (/invoices)
+
+  - Clients
+    - GET (/clients)
+
+    - GET/PUT/DELETE (/clients/{$id})
+
+    - POST (/clients)
+
+    - Orders by Client
+      - GET (/clients/{id}/orders)
+
+  - Notifications (Invoice Notifications)
+    - GET (/notifications)
+
+## Postman
+
+In the Postman Collection "Challenge":
+  - Set "Auth Type" => "Bearer Token"
+  - Set the "Token" => {{access_token}}
+
+Postman Collection
+- (https://github.com/williamedr/challengeapp/blob/main/docs/Challenge.postman_collection.json)
 
 
 ## Future Improvements
