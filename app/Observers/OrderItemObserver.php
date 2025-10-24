@@ -7,21 +7,6 @@ use App\Models\Product;
 
 class OrderItemObserver
 {
-	/**
-	 * Handle the Order "created" event.
-	 */
-	public function created(OrderItem $item): void
-	{
-		$this->updateOrderTotal($item);
-	}
-
-	/**
-	 * Handle the Order "updated" event.
-	 */
-	public function updated(OrderItem $item): void
-	{
-		$this->updateOrderTotal($item);
-	}
 
 	/**
 	 * Handle the Order "creating" event.
@@ -37,6 +22,22 @@ class OrderItemObserver
 	public function updating(OrderItem $item): void
 	{
 		$this->updateItemPrice($item);
+	}
+
+	/**
+	 * Handle the Order "created" event.
+	 */
+	public function created(OrderItem $item): void
+	{
+		$this->updateOrderTotal($item);
+	}
+
+	/**
+	 * Handle the Order "updated" event.
+	 */
+	public function updated(OrderItem $item): void
+	{
+		$this->updateOrderTotal($item);
 	}
 
 	/**

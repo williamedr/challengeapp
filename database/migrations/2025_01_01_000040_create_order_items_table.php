@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->decimal('subtotal', 12, 2);
             $table->timestamps();
 
+            $table->unique(['order_id', 'product_id']);
+
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

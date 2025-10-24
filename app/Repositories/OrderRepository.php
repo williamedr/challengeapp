@@ -52,11 +52,23 @@ class OrderRepository implements OrderInterface
 
 		if (!empty($items)) {
 			foreach ($items as $item) {
-				$it = new OrderItem();
-				$it->order_id = $order->id;
-				$it->quantity = $item['quantity'];
-				$it->product_id = $item['product_id'];
-				$it->save();
+				$cond = [];
+				$cond['order_id'] = $order->id;
+				$cond['product_id'] = $item['product_id'];
+
+				$tmpItem = OrderItem::where($cond)->first();
+
+				if (empty($tmpItem)) {
+					$it = new OrderItem();
+					$it->order_id = $order->id;
+					$it->quantity = $item['quantity'];
+					$it->product_id = $item['product_id'];
+					$it->save();
+
+				} else {
+					$tmpItem->quantity = $tmpItem->quantity + $item['quantity'];
+					$tmpItem->save();
+				}
 			}
 
 			$order->refresh();
@@ -73,6 +85,18 @@ class OrderRepository implements OrderInterface
 
 		if (!empty($items)) {
 			foreach ($items as $item) {
+				$cond = [];
+				$cond['order_id'] = $order->id;
+				$cond['product_id'] = $item['product_id'];
+
+				$tmpItem = OrderItem::where($cond)->first();
+
+				if (!empty($tmpItem)) {
+					$tmpItem->quantity = $tmpItem->quantity + $item['quantity'];
+					$tmpItem->save();
+
+					continue;
+				}
 
 				if (isset($item['id'])) {
 					$it = OrderItem::findOrFail($item['id']);
