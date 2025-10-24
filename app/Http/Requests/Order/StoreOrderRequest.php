@@ -22,7 +22,6 @@ class StoreOrderRequest extends BaseRequest {
 			'client_id' => ['required', new ClientUserRule($user)],
 			'user_id' => ['required', Rule::in([$user->id])],
 			'status' => ['required', new Enum(OrderStatus::class)],
-			'total' => 'required|numeric|min:0',
 			'order_items.*.product_id' => 'required|exists:products,id',
 			'order_items.*.quantity' => 'required|integer|min:1',
 		];

@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Middleware\CheckClient;
 use App\Http\Middleware\CheckUser;
-use App\Models\User;
+
 
 
 Route::get('/health', function () {
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() 
 
 	Route::resource('orders', OrderController::class)->middleware(CheckUser::class);
 
-	Route::resource('invoices', InvoiceController::class)->middleware(CheckUser::class);
+	Route::resource('invoices', InvoiceController::class);
 
 	Route::resource('clients', ClientController::class);
 

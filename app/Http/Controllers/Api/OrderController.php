@@ -58,7 +58,7 @@ class OrderController extends BaseController
 
 		$result = $this->order->create($order, $validatedData['order_items']);
 
-		return $this->sendResponse($result);
+		return $this->sendResponse($result, 'Order Created Successfully', 201);
 	}
 
 
@@ -73,7 +73,7 @@ class OrderController extends BaseController
 
 		$result = $this->order->update($order, $validatedData['order_items']);
 
-		return $this->sendResponse($result);
+		return $this->sendResponse($result, 'Order Updated Successfully');
 	}
 
 	/**

@@ -2,14 +2,24 @@
 
 namespace Tests\Feature;
 
+use AuthenticatedApiTest;
+
+use App\Jobs\GenerateInvoiceJob;
 use App\Models\Client;
 use App\Models\Order;
 use App\Models\User;
-use AuthenticatedApiTest;
+use Illuminate\Support\Facades\Queue;
 
 
 class OrdersTest extends AuthenticatedApiTest
 {
+
+	public function test_get_all_orders_not_authenticated_user(): void
+	{
+		$response = $this->getJson('/api/orders');
+		$response->assertStatus(401);
+	}
+
 
 	public function test_get_all_orders_by_admin(): void
 	{
@@ -117,10 +127,6 @@ class OrdersTest extends AuthenticatedApiTest
 		$order = $this->differentUser->orders()->inRandomOrder()->first();
 		$order_id = $order->id;
 
-		echo "Order Id: " . $order_id . PHP_EOL;
-        echo "User Id: " . $user->id . PHP_EOL;
-        echo "Different User Id: " . $this->differentUser->id . PHP_EOL;
-
 		$response = $this->getJson("/api/orders/$order_id");
 		$response->assertStatus(404);
 
@@ -158,6 +164,96 @@ class OrdersTest extends AuthenticatedApiTest
 	}
 
 
+	public function test_authenticated_user_can_create_an_order(): void
+	{
+		Queue::fake();
+
+		$user = $this->user;
+		$this->actingAs($user);
+
+		$orderData = Order::factory()->create()->toArray();
+
+		$response = $this->post(route('orders.store'), $orderData);
+
+		$response->assertStatus(201);
+
+		$this->assertDatabaseHas('orders', [
+			'user_id' => $user->id,
+			'id' => $orderData['id'],
+		]);
+
+		Queue::assertPushed(GenerateInvoiceJob::class); // Assert that GenerateInvoiceJob was pushed
+
+		$this->test_get_all_invoices();
+
+	}
+
+
+
+	public function test_authenticated_user_can_update_an_order(): void
+	{
+		$user = $this->user;
+
+		$this->actingAs($user);
+
+		$order = $user->orders()->inRandomOrder()->first();
+
+		$items = [];
+
+		foreach ($order->order_items as $row) {
+			$items[] = [
+				'product_id' => $row['product_id'],
+				'quantity' => $row['quantity'] + 1,
+			];
+		}
+
+		$updatedData = [
+			'status' => 'pending',
+			'order_items' => $items,
+		];
+
+		$response = $this->put(route('orders.update', $order), $updatedData);
+
+		$response->assertStatus(200);
+
+		$this->assertDatabaseHas('orders', [
+			'id' => $order->id,
+			'status' => 'pending',
+		]);
+	}
+
+
+
+	public function test_get_all_invoices(): void
+	{
+
+		$this->actingAs($this->user);
+
+		$response = $this->getJson('/api/invoices');
+		$response->assertStatus(200);
+
+		$this->checkInvoiceStructure($response);
+
+		$this->assertGreaterThanOrEqual(1, count($response['data']));
+
+		$this->test_get_all_notifications();
+
+	}
+
+
+	public function test_get_all_notifications(): void
+	{
+
+		$this->actingAs($this->user);
+
+		$response = $this->getJson('/api/notifications');
+		$response->assertStatus(200);
+
+		$this->assertGreaterThanOrEqual(1, count($response['data']));
+
+	}
+
+
 
 	private function checkOrderStructure($response, $opt = 0) {
 
@@ -190,6 +286,51 @@ class OrdersTest extends AuthenticatedApiTest
 					"created_at",
 					"updated_at",
 					"order_items"
+				]
+			]);
+
+		} else if ($opt == 2) {
+			$response->assertJsonStructure([
+				"success",
+				'data' => []
+			]);
+		}
+
+	}
+
+
+
+	private function checkInvoiceStructure($response, $opt = 0) {
+
+		if ($opt == 0) {
+			$response->assertJsonStructure([
+				"success",
+				'data' => [
+					'*' => [
+						"id",
+						"client_id",
+						"order_id",
+						"invoice_number",
+						"total",
+						"issued_at",
+						"created_at",
+						"updated_at",
+					]
+				]
+			]);
+
+		} else if ($opt == 1) {
+			$response->assertJsonStructure([
+				"success",
+				'data' => [
+					"id",
+					"client_id",
+					"order_id",
+					"invoice_number",
+					"total",
+					"issued_at",
+					"created_at",
+					"updated_at",
 				]
 			]);
 
