@@ -1,0 +1,980 @@
+{
+	"info": {
+		"_postman_id": "5764b918-8086-4272-afbe-c4e386cb0f3b",
+		"name": "Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "194633"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "All Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"sku\": \"AXZKTEGLAK\",\r\n    \"price\": 16.39,\r\n    \"stock\": 90,\r\n    \"description\": \"Nam laudantium qui inventore sint suscipit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"sku\": \"AXZKTEGLAK\",\r\n    \"price\": 16.39,\r\n    \"stock\": 90,\r\n    \"description\": \"Nam laudantium qui inventore sint suscipit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "All Clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/clients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/clients/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/clients/1/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/clients/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"sku\": \"AXZKTEGLAK\",\r\n    \"price\": 16.39,\r\n    \"stock\": 90,\r\n    \"description\": \"Nam laudantium qui inventore sint suscipit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/clients/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"sku\": \"AXZKTEGLAK\",\r\n    \"price\": 16.39,\r\n    \"stock\": 90,\r\n    \"description\": \"Nam laudantium qui inventore sint suscipit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "All Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 1,\r\n    \"status\": \"pending\",\r\n    \"total\": 0,\r\n    \"order_items\": [\r\n        {\r\n            \"id\": 2,\r\n            \"order_id\": 1,\r\n            \"product_id\": 3,\r\n            \"quantity\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 1,\r\n    \"status\": \"pending\",\r\n    \"order_items\": [\r\n        {\r\n            \"product_id\": 5,\r\n            \"quantity\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invoices",
+			"item": [
+				{
+					"name": "All Invoices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/invoices",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notifications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/notifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Invoice",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/invoices/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/invoices/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"product 1\",\r\n    \"sku\": \"AXZKTEGLAK\",\r\n    \"price\": 16.39,\r\n    \"stock\": 90,\r\n    \"description\": \"Nam laudantium qui inventore sint suscipit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/invoices/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_id\": 11,\r\n    \"invoice_number\": \"00000011-2\",\r\n    \"total\": 1165921.79\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/invoices",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    // Parse the JSON response body\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"    // Extract the access token (adjust 'access_token' if your API uses a different key)\r",
+									"    var accessToken = jsonData.access_token;\r",
+									"\r",
+									"    // Set the access token as an environment variable (you can choose collection or global as well)\r",
+									"    // pm.environment.set(\"access_token\", accessToken);\r",
+									"    pm.collectionVariables.set(\"access_token\", accessToken);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{admin_user}}\",\n\t\"password\": \"{{admin_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Client User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    // Parse the JSON response body\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"    // Extract the access token (adjust 'access_token' if your API uses a different key)\r",
+									"    var accessToken = jsonData.access_token;\r",
+									"\r",
+									"    // Set the access token as an environment variable (you can choose collection or global as well)\r",
+									"    // pm.environment.set(\"access_token\", accessToken);\r",
+									"    pm.collectionVariables.set(\"access_token\", accessToken);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{client_user}}\",\n\t\"password\": \"{{user_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"william.ecu@gmail.com\",\n\t\"password\": \"123456\",\n    \"name\": \"William\",\n    \"c_password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijg5MTA4MmVlMzNkNTUxN2VhMmY2YjU5MDUzNDcyYmUxMTUzNDljNTAzMGIzNTE5ZTE0NTZhZjljZDViNjIxZWZlM2ZiYmM5YjZkNGFhZGJlIn0.eyJhdWQiOiIxIiwianRpIjoiODkxMDgyZWUzM2Q1NTE3ZWEyZjZiNTkwNTM0NzJiZTExNTM0OWM1MDMwYjM1MTllMTQ1NmFmOWNkNWI2MjFlZmUzZmJiYzliNmQ0YWFkYmUiLCJpYXQiOjE2MzE3NDMxMjAsIm5iZiI6MTYzMTc0MzEyMCwiZXhwIjoxNjYzMjc5MTIwLCJzdWIiOiI0OTgiLCJzY29wZXMiOltdfQ.F8BqRAbje2o-U_4LxoO_X3yVw3trJ97Yzi22z4ZMimKjdE729eY9EWDzAnBoyNyYOCVlhvNmIOT3vfytsLls1NHVCKi8bZx3PgZax4umkAk-dIS1fC6Q3MLgLM9tY3p972Szp9ESFu03xBMKKk7T3jV60Z67nz3nVMU3Azf7KKglXyjFGPMsfZa7Vy4q2QhenHDx6_cY1ge0uB9PtDuwbuMg7R6kuo6UOfvJ2gfJyaBaXQLrPGCuBhgnzPYF714QBdiBiIoblH3EFVuxDZ2C3pPgmMJntWyDi9ui-kEPPmkBXC0QwMhbf_odWoZp_WG8NrIo-hHWdSLIqz1P-eXaJSW-D1VQtc7wpMa8rygrE1TUAMAdOyU6-s6BOmv8RKvZICA7OYrW773UWmb0gIqw5Vh9gsgfYjsADMoiFvByfbtL_WlJgdt0CIf1U8-co7jCPHHGC72bJ9tRKmaYXpjzQBZgW5xZW9r9Nfu5Y3rZ_a9EQXeXewdtZm_Epx7pg7HBBdB-oHfNrWPWchzl5wMZZvmlA_9HPASudYa4MYUp5U4GoU0QToBBI2N_aPeUBuS6KLjwe1F-2c6McqAKcd7Dc2nq4rKgxJqlZQvCkmJHVldviV35IA6wMK8GuuZrHDw5BZ03hpQLYVPgN6H3PmqdfjtMbNXofDKnySzxZOLJUHI",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijg5MTA4MmVlMzNkNTUxN2VhMmY2YjU5MDUzNDcyYmUxMTUzNDljNTAzMGIzNTE5ZTE0NTZhZjljZDViNjIxZWZlM2ZiYmM5YjZkNGFhZGJlIn0.eyJhdWQiOiIxIiwianRpIjoiODkxMDgyZWUzM2Q1NTE3ZWEyZjZiNTkwNTM0NzJiZTExNTM0OWM1MDMwYjM1MTllMTQ1NmFmOWNkNWI2MjFlZmUzZmJiYzliNmQ0YWFkYmUiLCJpYXQiOjE2MzE3NDMxMjAsIm5iZiI6MTYzMTc0MzEyMCwiZXhwIjoxNjYzMjc5MTIwLCJzdWIiOiI0OTgiLCJzY29wZXMiOltdfQ.F8BqRAbje2o-U_4LxoO_X3yVw3trJ97Yzi22z4ZMimKjdE729eY9EWDzAnBoyNyYOCVlhvNmIOT3vfytsLls1NHVCKi8bZx3PgZax4umkAk-dIS1fC6Q3MLgLM9tY3p972Szp9ESFu03xBMKKk7T3jV60Z67nz3nVMU3Azf7KKglXyjFGPMsfZa7Vy4q2QhenHDx6_cY1ge0uB9PtDuwbuMg7R6kuo6UOfvJ2gfJyaBaXQLrPGCuBhgnzPYF714QBdiBiIoblH3EFVuxDZ2C3pPgmMJntWyDi9ui-kEPPmkBXC0QwMhbf_odWoZp_WG8NrIo-hHWdSLIqz1P-eXaJSW-D1VQtc7wpMa8rygrE1TUAMAdOyU6-s6BOmv8RKvZICA7OYrW773UWmb0gIqw5Vh9gsgfYjsADMoiFvByfbtL_WlJgdt0CIf1U8-co7jCPHHGC72bJ9tRKmaYXpjzQBZgW5xZW9r9Nfu5Y3rZ_a9EQXeXewdtZm_Epx7pg7HBBdB-oHfNrWPWchzl5wMZZvmlA_9HPASudYa4MYUp5U4GoU0QToBBI2N_aPeUBuS6KLjwe1F-2c6McqAKcd7Dc2nq4rKgxJqlZQvCkmJHVldviV35IA6wMK8GuuZrHDw5BZ03hpQLYVPgN6H3PmqdfjtMbNXofDKnySzxZOLJUHI",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/test",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "3|A81LrVh7a29CKDu0u5iX9hOLn1yq9BLu3QR3J3xV8d5e20ca"
+		},
+		{
+			"key": "admin_user",
+			"value": ""
+		},
+		{
+			"key": "admin_password",
+			"value": ""
+		},
+		{
+			"key": "user_password",
+			"value": ""
+		},
+		{
+			"key": "url",
+			"value": ""
+		},
+		{
+			"key": "client_user",
+			"value": ""
+		},
+		{
+			"key": "manager_user",
+			"value": ""
+		}
+	]
+}
