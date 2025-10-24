@@ -1,9 +1,24 @@
 
-## Challenge App
+# Challenge App
+
+<br>
 
 Order Management API serving to multiples clients.
 
 This was implemented based on a single-database tenant without use any tenant package.
+
+
+
+## Pre-Requirements
+
+- Docker
+- Docker-Compose
+
+## Challenge Requirements
+
+[https://github.com/williamedr/challengeapp/blob/main/docs/LaravelChallenge.pdf]
+
+## Users Types
 
 Initially there are 3 users types:
 
@@ -24,6 +39,9 @@ Initially there are 3 users types:
   - __Invoices__: Filtered by client_id.
   - __Products__: No filtered.
   - __Clients__: Filtered by client_id.
+
+
+One user could be associated to one or more clients.
 
 
 ## Installation
@@ -83,7 +101,18 @@ Files:
 
 
 ## Postman
-Collection Link [https://github.com/williamedr/challengeapp/blob/main/apidocs/Challenge.postman_collection.json]
+Collection Link:
+
+[https://github.com/williamedr/challengeapp/blob/main/docs/Challenge.postman_collection.json]
+
+
+## Future Improvements
+
+- Implement Roles for the users.
+
+- An endpoint to assign users to clients.
+
+- Add the Swagger to generate an API interface and API documentation.
 
 
 ## Developer
