@@ -16,7 +16,7 @@ This was implemented based on a single-database tenant without use any tenant pa
 
 ## Challenge Requirements
 
-[https://github.com/williamedr/challengeapp/blob/main/docs/LaravelChallenge.pdf]
+(https://github.com/williamedr/challengeapp/blob/main/docs/LaravelChallenge.pdf)
 
 ## Users Types
 
@@ -103,7 +103,7 @@ Files:
 ## Postman
 Collection Link:
 
-[https://github.com/williamedr/challengeapp/blob/main/docs/Challenge.postman_collection.json]
+[Postman Collection] (https://github.com/williamedr/challengeapp/blob/main/docs/Challenge.postman_collection.json)
 
 
 ## Future Improvements
@@ -119,8 +119,8 @@ Collection Link:
 
 William Dominguez ([williamedr@gmail.com])
 
-GitHub Profile [https://github.com/williamedr]
+GitHub Profile (https://github.com/williamedr)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license] (https://opensource.org/licenses/MIT).
