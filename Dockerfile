@@ -1,4 +1,4 @@
-# deploy/Dockerfile
+# Dockerfile
 
 # stage 1: build stage
 FROM php:8.3-fpm-alpine AS build

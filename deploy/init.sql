@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXISTS challenge;
+CREATE DATABASE IF NOT EXISTS challengetest;
+
+GRANT ALL PRIVILEGES ON `challengetest`.* TO 'admin'@'%';
+
+FLUSH PRIVILEGES;
