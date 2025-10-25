@@ -39,31 +39,31 @@ class UserFactory extends Factory
 	public function configure()
 	{
 		return $this->afterCreating(function (User $user) {
-            $role = Role::firstOrCreate(['name' => 'user']);
+			$role = Role::firstOrCreate(['name' => 'user']);
 
 			$this->updateUser($user, $role, TRUE);
 		});
 	}
 
 
-    // You can also define specific states for different roles
-    public function admin()
-    {
-        return $this->afterCreating(function (User $user) {
-            $role = Role::firstOrCreate(['name' => 'admin']);
+	// You can also define specific states for different roles
+	public function admin()
+	{
+		return $this->afterCreating(function (User $user) {
+			$role = Role::firstOrCreate(['name' => 'admin']);
 
 			$this->updateUser($user, $role, FALSE);
 		});
-    }
+	}
 
-    public function manager()
-    {
-        return $this->afterCreating(function (User $user) {
+	public function manager()
+	{
+		return $this->afterCreating(function (User $user) {
 			$role = Role::firstOrCreate(['name' => 'manager']);
 
 			$this->updateUser($user, $role, TRUE);
 		});
-    }
+	}
 
 
 	/**
@@ -80,8 +80,15 @@ class UserFactory extends Factory
 	private function updateUser($user, $role, $attachClient = FALSE) {
 		$user->assignRole($role);
 
-		$client = Client::inRandomOrder()->first();
-		$user->clients()->attach($client->id);
+		if ($attachClient && $user->hasAnyRole(['manager', 'user'])) {
+			$client = Client::inRandomOrder()->first();
+
+			$exists = $user->clients()->where(['client_id' => $client->id])->exists();
+
+			if (!$exists) {
+				$user->clients()->attach($client->id)->withTimestamps();
+			}
+		}
 
 		$name = $role->name;
 		$email = $name . $user->id . '@example.com';
@@ -92,10 +99,6 @@ class UserFactory extends Factory
 
 		$user->update($upd);
 
-		if ($attachClient) {
-			$client = Client::inRandomOrder()->first();
-			$user->clients()->attach($client->id);
-		}
 	}
 
 }

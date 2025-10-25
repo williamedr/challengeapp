@@ -32,20 +32,19 @@ class DatabaseSeeder extends Seeder
 		Product::factory()->count(10)->create();
 
 
+		// Create 1 Admin users
+		User::factory()->admin()->create();
+
+		// Create 2 Manager users
+		User::factory()->manager()->count(2)->create();
+
 		// Create 3 users
-        User::factory()->count(3)->create();
+		User::factory()->count(3)->create();
 
 
 		// Create Orders
 		$this->call([OrderSeeder::class]);
 
-
-
-		// Create 1 Admin users
-        User::factory()->admin()->create();
-
-		// Create 2 Manager users
-        User::factory()->manager()->count(2)->create();
 
 	}
 
