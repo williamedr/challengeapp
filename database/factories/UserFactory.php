@@ -86,7 +86,7 @@ class UserFactory extends Factory
 			$exists = $user->clients()->where(['client_id' => $client->id])->exists();
 
 			if (!$exists) {
-				$user->clients()->attach($client->id)->withTimestamps();
+				$user->clients()->attach($client->id);
 			}
 		}
 
