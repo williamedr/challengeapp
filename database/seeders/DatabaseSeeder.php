@@ -8,9 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +18,39 @@ class DatabaseSeeder extends Seeder
 	public function run(): void
 	{
 
+		$this->truncate();
+
+
+		// Create Roles
+		$this->call([RolesSeeder::class]);
+
+
+		// Create 3 Clients
+		Client::factory()->count(3)->create();
+
+		// Create 10 Products
+		Product::factory()->count(10)->create();
+
+
+		// Create 3 users
+        User::factory()->count(3)->create();
+
+
+		// Create Orders
+		$this->call([OrderSeeder::class]);
+
+
+
+		// Create 1 Admin users
+        User::factory()->admin()->create();
+
+		// Create 2 Manager users
+        User::factory()->manager()->count(2)->create();
+
+	}
+
+
+	private function truncate() {
 		Schema::disableForeignKeyConstraints();
 
 		DB::table('cache_locks')->truncate();
@@ -35,28 +66,6 @@ class DatabaseSeeder extends Seeder
 		DB::table('invoices')->truncate();
 
 		Schema::enableForeignKeyConstraints();
-
-		// Create 3 Clients
-		Client::factory()->count(3)->create();
-
-		// Create 2 Admin users
-		User::factory()->count(2)->create([
-			'name' => 'admin'
-		]);
-
-		// Create 2 Client users
-		User::factory()->count(2)->create();
-
-		// Create 10 Products
-		Product::factory()->count(10)->create();
-
-		// Create Orders
-		$this->call([OrderSeeder::class]);
-
-		// Create Client Manager User (No Orders)
-		User::factory()->count(1)->create([
-			'name' => 'manager'
-		]);
-
 	}
+
 }

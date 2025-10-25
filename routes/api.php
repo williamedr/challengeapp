@@ -31,7 +31,6 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
-
 	Route::get('/test', function (Request $request) {
 		return "Test Ok";
 	});
@@ -46,6 +45,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 	Route::get('clients/{client}/orders', [ClientController::class, 'orders']);
 
 	Route::get('notifications', [InvoiceController::class, 'notifications']);
+
+	Route::post('assignuser/{client}/{user}', [ClientController::class, 'assignuser'])->middleware(['role:admin|manager']);
 
 });
 

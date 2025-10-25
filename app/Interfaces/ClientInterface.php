@@ -3,7 +3,7 @@
 namespace App\Interfaces;
 
 use App\Models\Client;
-
+use App\Models\User;
 
 interface ClientInterface
 {
@@ -17,5 +17,7 @@ interface ClientInterface
 	public function update(Client $client);
 
 	public function delete(Client $client);
+
+	public function assignuser(Client $client, User $user);
 
 }

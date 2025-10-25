@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Client\StoreClientRequest;
 use App\Http\Requests\Client\UpdateClientRequest;
 use App\Interfaces\ClientInterface;
 use App\Models\Client;
-use Exception;
-use PhpParser\Node\Stmt\TryCatch;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Models\ClientUser;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 
 class ClientController extends BaseController
 {
@@ -87,6 +89,18 @@ class ClientController extends BaseController
 	public function orders(Client $client)
 	{
 		return $this->sendResponse($client->orders);
+	}
+
+
+
+	/**
+	 * Display the client orders.
+	 */
+	public function assignuser(Client $client, User $user)
+	{
+		$result = $this->client->assignuser($client, $user);
+
+		return $this->sendResponse($result);
 	}
 
 

@@ -14,7 +14,14 @@ class OrderSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+		$this->truncate();
 
+		Order::factory()->count(20)->create();
+
+	}
+
+
+	private function truncate() {
 		Schema::disableForeignKeyConstraints();
 
 		DB::table('cache_locks')->truncate();
@@ -25,8 +32,6 @@ class OrderSeeder extends Seeder
 		DB::table('invoices')->truncate();
 
 		Schema::enableForeignKeyConstraints();
-
-		Order::factory()->count(20)->create();
-
 	}
+
 }

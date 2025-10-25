@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -38,30 +39,31 @@ class UserFactory extends Factory
 	public function configure()
 	{
 		return $this->afterCreating(function (User $user) {
-			$name = $user->name;
-			$email = 'testuser' . $user->id;
+            $role = Role::firstOrCreate(['name' => 'user']);
 
-			$upd = [];
-
-			if ($name == 'admin') {
-				$email = $name . $user->id;
-				$upd['name'] = ucfirst($name) . " " . $user->id;
-
-			} else if ($name == 'manager') {
-				$email = $name . $user->id;
-				$upd['name'] = ucfirst($name) . " " . $user->id;
-
-				$user->clients()->attach(Client::inRandomOrder()->first()->id);
-
-			} else {
-				$user->clients()->attach(Client::inRandomOrder()->first()->id);
-			}
-
-			$upd['email'] = $email . '@example.com';
-
-			$user->update($upd);
+			$this->updateUser($user, $role, TRUE);
 		});
 	}
+
+
+    // You can also define specific states for different roles
+    public function admin()
+    {
+        return $this->afterCreating(function (User $user) {
+            $role = Role::firstOrCreate(['name' => 'admin']);
+
+			$this->updateUser($user, $role, FALSE);
+		});
+    }
+
+    public function manager()
+    {
+        return $this->afterCreating(function (User $user) {
+			$role = Role::firstOrCreate(['name' => 'manager']);
+
+			$this->updateUser($user, $role, TRUE);
+		});
+    }
 
 
 	/**
@@ -73,4 +75,27 @@ class UserFactory extends Factory
 			'email_verified_at' => null,
 		]);
 	}
+
+
+	private function updateUser($user, $role, $attachClient = FALSE) {
+		$user->assignRole($role);
+
+		$client = Client::inRandomOrder()->first();
+		$user->clients()->attach($client->id);
+
+		$name = $role->name;
+		$email = $name . $user->id . '@example.com';
+
+		$upd = [];
+		$upd['name'] = ucfirst($name) . " {$user->id}";
+		$upd['email'] = $email;
+
+		$user->update($upd);
+
+		if ($attachClient) {
+			$client = Client::inRandomOrder()->first();
+			$user->clients()->attach($client->id);
+		}
+	}
+
 }

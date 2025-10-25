@@ -20,19 +20,35 @@ class CheckClient
 
 		$user = $request->user();
 
-		if ($user->clients()->exists()) {
 
-			if ($user->clients()->count() == 1) {
-				$client_id = $user->clients[0]->id;
+		if ($user->hasRole('admin')) {
+			return $next($request);
+		}
+
+
+		if ($user->clients()->exists()) {
+			$client_id = '';
+
+			$count = $user->clients()->count();
+
+			if ($count > 1) {
+				if (!empty($request->client_id)) {
+					$client_id = $request->client_id;
+				}
 
 			} else {
+				$client_id = $user->clients[0]->id;
+			}
+
+
+			if ($client_id == '') {
 				return response([
 					'success' => false,
 					'code' => 422,
 					'message' => "Client Id (client_id) parameter is required.",
 				], 422);
-
 			}
+
 
 			$client = Client::findOrFail($client_id);
 
@@ -45,6 +61,13 @@ class CheckClient
 			}
 
 			$request['client_id'] = $client_id;
+
+		} else {
+			return response([
+				'success' => false,
+				'code' => 422,
+				'message' => "This user is not associated to any client.",
+			], 403);
 		}
 
 		return $next($request);
