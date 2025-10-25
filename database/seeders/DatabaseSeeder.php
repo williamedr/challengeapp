@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Client;
 use Illuminate\Database\Seeder;
 
+use App\Models\Client;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +15,7 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-
+		// Truncate tables
 		$this->truncate();
 
 
@@ -50,22 +48,7 @@ class DatabaseSeeder extends Seeder
 
 
 	private function truncate() {
-		Schema::disableForeignKeyConstraints();
-
-		DB::table('cache_locks')->truncate();
-		DB::table('jobs')->truncate();
-		DB::table('client_user')->truncate();
-		DB::table('clients')->truncate();
-		DB::table('roles')->truncate();
-		DB::table('users')->truncate();
-		DB::table('products')->truncate();
-
-		DB::table('notifications')->truncate();
-		DB::table('orders')->truncate();
-		DB::table('order_items')->truncate();
-		DB::table('invoices')->truncate();
-
-		Schema::enableForeignKeyConstraints();
+		$this->call([TruncateSeeder::class]);
 	}
 
 }
