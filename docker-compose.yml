@@ -14,7 +14,7 @@ services:
 
     environment:
       APP_NAME: ${APP_NAME}
-      APP_ENV: ${APP_ENV}
+      # APP_ENV: ${APP_ENV}
       APP_DEBUG: ${APP_DEBUG}
       APP_KEY: ${APP_KEY}
       APP_VERSION: ${APP_VERSION}
