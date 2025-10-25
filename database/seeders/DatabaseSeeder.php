@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
 		DB::table('jobs')->truncate();
 		DB::table('client_user')->truncate();
 		DB::table('clients')->truncate();
+		DB::table('roles')->truncate();
 		DB::table('users')->truncate();
 		DB::table('products')->truncate();
 

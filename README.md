@@ -27,12 +27,14 @@ Initially there are 3 users types:
   - __Invoices__: No filtered.
   - __Products__: No filtered.
   - __Clients__: No filtered.
+  - Can assign users to clients
 
 - __Manager__: This user can access to all the resources in the API like Orders, Invoices, Clients, Products. They are associated to one or more Clients.
   - __Orders__: No filtered.
   - __Invoices__: No filtered.
   - __Products__: No filtered.
   - __Clients__: No filtered.
+  - Can assign users to the client associated with the user
 
 - __Client User__: This user can access to the resources in the API with the associated client_id or user_id. They are associated to one or more Clients.
   - __Orders__: Filtered by client_id and user_id.
@@ -49,12 +51,17 @@ One user could be associated to one or more clients.
 ### Docker
 
 - Create Docker Container:
-
   - `docker-compose up -d`
+
+
+- Clear Config before migrate
+  - `docker-compose exec challengeapp php artisan config:clear`
 
 - Run the Database Migration into the Container:
   - `docker-compose exec challengeapp php artisan migrate`
 
+- Re-run the Database Migration with seeding DB:
+  - `docker-compose exec challengeapp php artisan migrate:fresh --seed`
 
 ## DB Seeder
 
@@ -67,15 +74,15 @@ Action:
 
 - Create 3 Clients
 
-- Create 2 Admin users
+- Create 1 Admin users
 
-- Create 2 Client users
+- Create 2 Client Manager User
+
+- Create 3 users
 
 - Create 20 Products
 
 - Create 20 Orders with 1 to 4 items.
-
-- Create 1 Client Manager User
 
 - Run the Database Seeder:
   - `docker-compose exec challengeapp php artisan db:seed`
@@ -154,6 +161,9 @@ Files:
 
     - Orders by Client
       - GET (/clients/{id}/orders)
+
+    - Assign User to Client
+      - GET (/assignuser/{client}/{user})
 
   - Notifications (Invoice Notifications)
     - GET (/notifications)
