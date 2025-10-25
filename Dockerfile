@@ -22,7 +22,7 @@ RUN apk add --no-cache \
     && docker-php-ext-enable gd
 
 # install composer
-COPY --from=composer:2.7.6 /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 WORKDIR /var/www/html
 
@@ -31,6 +31,8 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache
+
+RUN rm -R composer.lock vendor
 
 # install php and node.js dependencies
 RUN composer install --no-dev --prefer-dist \

@@ -55,6 +55,8 @@ One user could be associated to one or more clients.
 - Run the Database Migration into the Container:
   - `docker-compose exec challengeapp php artisan migrate`
 
+- Re-run the Database Migration with seeding DB:
+  - `docker-compose exec challengeapp php artisan migrate:fresh --seed`
 
 ## DB Seeder
 
