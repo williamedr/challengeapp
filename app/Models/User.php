@@ -49,7 +49,9 @@ class User extends Authenticatable
 	}
 
 
-	protected $with = ['clients'];
+	protected $with = [
+		'clients'
+	];
 
 
 	public function clients()

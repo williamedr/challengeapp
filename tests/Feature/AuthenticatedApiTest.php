@@ -21,27 +21,25 @@
 			$this->seed(); // Runs DatabaseSeeder
 
 
-			$this->user = User::whereHas('clients')
+			$this->adminUser = User::role('admin')
+				->inRandomOrder()
+				->first();
+
+			$this->user = User::role('user')
 				->whereHas('orders')
 				->inRandomOrder()
 				->first();
 
-			$this->differentUser = User::whereHas('clients')
+			$this->differentUser = User::role('user')
 				->whereHas('orders')
 				->where('id', '<>', $this->user->id)
 				->first();
 
-
-			$this->userNoOrders = User::whereDoesntHave('orders')
-				->whereHas('clients')
+			$this->userNoOrders = User::role('manager')
+				->whereDoesntHave('orders')
 				->inRandomOrder()
 				->first();
 
-
-			// User without client relation
-			$this->adminUser = User::whereDoesntHave('clients')
-				->inRandomOrder()
-				->first();
 		}
 
 

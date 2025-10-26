@@ -169,6 +169,7 @@ class OrdersTest extends AuthenticatedApiTest
 		Queue::fake();
 
 		$user = $this->user;
+
 		$this->actingAs($user);
 
 		$orderData = Order::factory()->create()->toArray();

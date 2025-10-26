@@ -36,7 +36,7 @@ class UserFactory extends Factory
 	}
 
 
-	public function configure()
+	public function user()
 	{
 		return $this->afterCreating(function (User $user) {
 			$role = Role::firstOrCreate(['name' => 'user']);
@@ -80,21 +80,18 @@ class UserFactory extends Factory
 	private function updateUser($user, $role, $attachClient = FALSE) {
 		$user->assignRole($role);
 
-		if ($attachClient && $user->hasAnyRole(['manager', 'user'])) {
+		if ($attachClient && $user->hasRole(['manager', 'user'])) {
 			$client = Client::inRandomOrder()->first();
-
-			$exists = $user->clients()->where(['client_id' => $client->id])->exists();
-
-			if (!$exists) {
-				$user->clients()->attach($client->id);
-			}
+			$user->clients()->attach($client->id);
 		}
 
 		$name = $role->name;
 		$email = $name . $user->id . '@example.com';
 
+		$name = ucfirst($name) . " {$user->id}";
+
 		$upd = [];
-		$upd['name'] = ucfirst($name) . " {$user->id}";
+		$upd['name'] = $name;
 		$upd['email'] = $email;
 
 		$user->update($upd);

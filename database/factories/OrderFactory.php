@@ -4,6 +4,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Enums\OrderStatus;
 use App\Models\ClientUser;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 
@@ -14,7 +15,8 @@ class OrderFactory extends Factory
 
 	public function definition()
 	{
-		$clientUser = ClientUser::inRandomOrder()->first();
+		$user = User::role('user')->whereHas('clients')->inRandomOrder()->first();
+		$clientUser = ClientUser::where(['user_id' => $user->id])->inRandomOrder()->first();
 
 		return [
 			'client_id' => $clientUser->client_id,

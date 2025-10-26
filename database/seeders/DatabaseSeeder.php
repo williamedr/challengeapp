@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+
 		// Truncate tables
 		$this->truncate();
 
@@ -37,7 +38,7 @@ class DatabaseSeeder extends Seeder
 		User::factory()->manager()->count(2)->create();
 
 		// Create 3 users
-		User::factory()->count(3)->create();
+		User::factory()->user()->count(3)->create();
 
 
 		// Create Orders
