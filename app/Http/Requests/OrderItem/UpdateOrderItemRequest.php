@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\OrderItem;
 
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;

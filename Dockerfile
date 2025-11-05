@@ -22,7 +22,7 @@ RUN apk add --no-cache \
     && docker-php-ext-enable gd
 
 # install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
@@ -32,7 +32,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache
 
-RUN rm -R composer.lock vendor
+RUN rm -Rf composer.lock vendor
 
 # install php and node.js dependencies
 RUN composer install --no-dev --prefer-dist \
@@ -41,6 +41,10 @@ RUN composer install --no-dev --prefer-dist \
 
 RUN chown -R www-data:www-data /var/www/html/vendor \
     && chmod -R 775 /var/www/html/vendor
+
+RUN chown -R www-data:www-data /var/www/html/storage \
+    && chmod -R 775 /var/www/html/storage \
+    && chmod -R 600 /var/www/html/storage/*.key
 
 # stage 2: production stage
 FROM php:8.3-fpm-alpine

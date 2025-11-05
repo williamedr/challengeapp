@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use AuthenticatedApiTest;
 
 use App\Jobs\GenerateInvoiceJob;
 use App\Models\Client;
