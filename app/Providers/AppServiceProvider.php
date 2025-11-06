@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Observers\OrderObserver;
 use App\Observers\OrderItemObserver;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot(): void
 	{
+		Schema::defaultStringLength(191);
+
 		Order::observe(OrderObserver::class);
 		OrderItem::observe(OrderItemObserver::class);
 	}

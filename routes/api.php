@@ -29,7 +29,7 @@ Route::group(['prefix' => 'auth'], function() {
 });
 
 
-Route::group(['middleware' => ['auth:sanctum']], function() {
+Route::group(['middleware' => ['auth:api']], function() {
 
 	Route::get('/test', function (Request $request) {
 		return "Test Ok";
@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 
-Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() {
+Route::group(['middleware' => ['auth:api', CheckClient::class]], function() {
 
 	Route::resource('orders', OrderController::class)->middleware(CheckUser::class);
 
@@ -64,3 +64,9 @@ Route::group(['middleware' => ['auth:sanctum', CheckClient::class]], function() 
 });
 
 
+
+Route::middleware('api_key')->group(function () {
+    Route::get('test', function (Request $request) {
+        return "API KEY: 666";
+    });
+});

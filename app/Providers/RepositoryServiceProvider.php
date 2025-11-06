@@ -1,8 +1,12 @@
 <?php
 namespace App\Providers;
 
-use App\Interfaces\ClientInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\UserRepositoryInterface;
+use App\Repositories\EloquentUserRepository;
+use App\Repositories\AuthRepositoryInterface;
+use App\Repositories\PassportAuthRepository;
+use App\Interfaces\ClientInterface;
 use App\Interfaces\InvoiceInterface;
 use App\Interfaces\OrderInterface;
 use App\Interfaces\OrderItemInterface;
@@ -17,6 +21,8 @@ class RepositoryServiceProvider extends ServiceProvider
 {
 	public function register()
 	{
+        $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
+        $this->app->bind(AuthRepositoryInterface::class, PassportAuthRepository::class);
 
 		$this->app->bind(ProductInterface::class, ProductRepository::class);
 
